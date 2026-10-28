@@ -1,6 +1,6 @@
 # Vendored dependencies and attribution
 
-The project includes third-party ROS sources to preserve the patches used with CARLA 0.9.16. They are distributed as vendored code with their notices and licenses, rather than as Git submodules.
+The project includes third-party ROS sources to preserve the patches used with CARLA 0.9.16. They are distributed as vendored code with their notices and licenses, rather than as Git submodules. The root MIT license covers original project material and does not replace these upstream licenses or copyright notices.
 
 | Directory | Origin | Reference revision | License |
 | --- | --- | --- | --- |

@@ -10,7 +10,7 @@ setup(
     packages=find_packages(exclude=["test"]),
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
-        ("share/" + package_name, ["package.xml"]),
+        ("share/" + package_name, ["package.xml", "LICENSE"]),
         # Install the behavior prompt so it is found on a non-symlink build too
         ("share/" + package_name + "/prompt", glob("prompt/*.md")),
     ],
@@ -19,7 +19,7 @@ setup(
     maintainer="marjimvic",
     maintainer_email="marjimvic02@users.noreply.github.com",
     description="Multimodal high-level driving decisions using local or cloud VLMs.",
-    license="LicenseRef-Proprietary",
+    license="MIT",
     entry_points={
         "console_scripts": ["prompt_manager = decision_making_module.prompt_manager:main"],
     },

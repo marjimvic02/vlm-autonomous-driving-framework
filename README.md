@@ -107,4 +107,4 @@ Environments, build products, credentials, recordings, editor settings and the l
 - [Maintenance plan and verification](docs/repository-maintenance.md)
 - [Publication privacy and security review](docs/security-review.md)
 
-Vendored dependencies retain their licenses. An open-source reuse license has not yet been selected for the original project code; see [LICENSE](LICENSE).
+The original project code and accompanying repository documentation are available under the [MIT License](LICENSE), allowing use, modification and redistribution, including commercial use. The thesis PDF is excluded from MIT and retains its [separate rights notice](docs/thesis/LICENSE). Vendored dependencies retain their own licenses; see the [licensing scope](docs/licensing.md).

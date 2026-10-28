@@ -15,3 +15,7 @@ The document covers motivation, related work, architecture, experimental methodo
 | Conclusions and extensions | Chapters 8 and 9 |
 
 The PDF is unchanged from the document provided by the author. Page references elsewhere refer to printed page numbers, which differ from the page positions in the file.
+
+## Rights notice
+
+The thesis PDF is excluded from the repository's MIT license and retains all rights reserved under its [separate notice](LICENSE). Making the framework code reusable does not grant additional permission to modify or redistribute the thesis. Existing statutory exceptions and separately granted rights remain unaffected. Other original repository documentation follows the root MIT license.

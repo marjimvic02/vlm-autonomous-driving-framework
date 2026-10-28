@@ -5,7 +5,7 @@
   <version>0.1.0</version>
   <description>Multimodal high-level driving decisions using local or cloud VLMs.</description>
   <maintainer email="marjimvic02@users.noreply.github.com">marjimvic</maintainer>
-  <license>LicenseRef-Proprietary</license>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>

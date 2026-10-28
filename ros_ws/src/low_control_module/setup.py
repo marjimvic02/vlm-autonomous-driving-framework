@@ -11,7 +11,7 @@ setup(
     packages=find_packages(exclude=["test"]),
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
-        ("share/" + package_name, ["package.xml"]),
+        ("share/" + package_name, ["package.xml", "LICENSE"]),
         (
             os.path.join("share", package_name, "launch"),
             glob("launch/*.launch.py") + glob("launch/*.json"),
@@ -22,7 +22,7 @@ setup(
     maintainer="marjimvic",
     maintainer_email="marjimvic02@users.noreply.github.com",
     description="Semantic action dispatch and speed control through CARLA Traffic Manager.",
-    license="LicenseRef-Proprietary",
+    license="MIT",
     entry_points={
         "console_scripts": ["action_dispatcher = low_control_module.action_dispatcher:main"],
     },

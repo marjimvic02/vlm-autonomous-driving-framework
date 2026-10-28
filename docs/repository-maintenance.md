@@ -64,4 +64,4 @@ python3 scripts/export_source.py
 
 The output is `dist/tfm-source.tar.gz`, with a top-level `tfm/` directory. It includes source, vendored dependencies, documentation, the thesis and summary tables. It excludes Git history, complete experimental data, local environments, editor settings and historical prototypes. Extract it into a new directory to initialize a normal Git repository, or copy the files into an existing checkout.
 
-Before publication, an open-source license for the original code may be selected if desired. No such license has been chosen or granted on the author's behalf: metadata reflects reserved rights, while dependencies retain their licenses. An integrated test with the selected CARLA and VLM services is also recommended.
+The author subsequently selected MIT for the original project code and accompanying repository documentation. Package metadata and installed license copies use MIT. The thesis PDF retains a separate all-rights-reserved notice, and vendored dependencies retain their licenses. See the [licensing scope](licensing.md). An integrated test with the selected CARLA and VLM services remains recommended.
