@@ -1,0 +1,61 @@
+# Local environments and credentials
+.pixi/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.kdbx
+*.env
+.ssh/
+id_rsa
+id_ecdsa
+id_ed25519
+credentials*.json
+service-account*.json
+.aws/
+.agents/
+.codex/
+.local/
+
+# Local historical prototypes (not part of the public source)
+archive/
+archieve/
+
+# ROS build products
+ros_ws/build/
+ros_ws/install/
+ros_ws/log/
+
+# Python and development tools
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+.vscode/
+build/
+dist/
+
+# Run data, simulator binaries and media stay local
+outputs/
+ros_ws/src/low_control_module/output/
+wheels/
+*.log
+*.bag
+*.db3
+*.mcap
+*.mp4
+*.webm
+carla_client_script/speed_ramp.png
+carla_client_script/speed_ramp.pdf
+
+# Operating system files
+.DS_Store
+Thumbs.db

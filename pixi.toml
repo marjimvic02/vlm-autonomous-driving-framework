@@ -1,0 +1,124 @@
+[workspace]
+channels = ["conda-forge", "robostack-humble"]
+name = "tfm"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[environments]
+ros   = { features = ["ros"] }
+carla = { features = ["carla"] }
+ml    = { features = ["ml"] }
+
+# ─────────────────────────────────────────────
+# ROS ENVIRONMENT — Python 3.11
+# ─────────────────────────────────────────────
+[feature.ros.dependencies]
+python = "3.11.*"
+ros-humble-desktop           = "*"
+ros-humble-ackermann-msgs    = "*"
+ros-humble-cv-bridge         = "*"
+numpy                        = "<2.0"
+opencv                       = "*"
+matplotlib                   = "*"
+scipy                        = "*"
+pygame                       = ">=2.6.1,<3"
+openmp                       = "*"
+colcon-common-extensions     = "*"
+cmake                        = "*"
+pkg-config                   = "*"
+gh = ">=2.96.0,<3"
+
+[feature.ros.pypi-dependencies]
+openai         = "*"
+pydantic       = ">=2.0"
+carla          = "==0.9.16"
+transforms3d   = "*"
+requests       = "*"
+python-dotenv  = "*"
+
+[feature.ros.system-requirements]
+cuda  = "12.8"
+libc  = "2.31"
+
+[feature.ros.tasks]
+build_bridge = "bash scripts/build_ros.sh"
+ros_bridge = "bash scripts/ros.sh ros2 launch carla_ros_bridge carla_ros_bridge.launch.py host:=localhost port:=2000 timeout:=10"
+source_bridge = "bash scripts/ros.sh bash"
+spawn_objects = "bash scripts/ros.sh ros2 launch carla_spawn_objects carla_spawn_objects.launch.py"
+manual_control = "bash scripts/ros.sh ros2 launch carla_manual_control carla_manual_control.launch.py"
+autopilot = 'bash scripts/ros.sh ros2 topic pub /carla/hero/enable_autopilot std_msgs/msg/Bool "{data: true}" --once'
+launch = "bash scripts/ros.sh ros2 launch low_control_module demo_starter.launch.py"
+launch_log = { cmd = "bash -o pipefail -c 'mkdir -p outputs; bash scripts/ros.sh ros2 launch low_control_module demo_starter.launch.py llm_provider:=openrouter llm_model:=anthropic/claude-haiku-4.5 2>&1 | tee outputs/haiku.log'" }
+demo = "python carla_client_script/demo_escenario.py"
+read_transform = "python carla_client_script/read_hero_transform.py"
+
+test_ros    = "python3 -c \"import rclpy; print('rclpy OK')\""
+test_carla  = "python3 -c \"import carla; print('carla import OK')\""
+test_openai = "python3 -c \"from openai import OpenAI; print('openai OK')\""
+
+# ─────────────────────────────────────────────
+# CARLA ENVIRONMENT — Python 3.11
+# ─────────────────────────────────────────────
+[feature.carla.dependencies]
+python     = "3.11.*"
+numpy      = "<2.0"
+opencv     = "*"
+matplotlib = "*"
+scipy      = "*"
+pygame     = ">=2.6.1,<3"
+openmp     = "*"
+
+[feature.carla.pypi-dependencies]
+carla = "==0.9.16"
+
+[feature.carla.system-requirements]
+cuda  = "12.8"
+libc  = "2.31"
+
+[feature.carla.tasks]
+test_carla = 'python -c "import carla; print(carla.__file__)"'
+
+# ─────────────────────────────────────────────
+# ML ENVIRONMENT — Python 3.11 + PyTorch + LLM
+# ─────────────────────────────────────────────
+[feature.ml.dependencies]
+python     = "3.11.*"
+numpy      = "<2.0"
+opencv     = "*"
+matplotlib = "*"
+scipy      = "*"
+openmp     = "*"
+
+[feature.ml.pypi-dependencies]
+torch         = { version = ">=2.7.0", index = "https://download.pytorch.org/whl/cu128" }
+torchvision   = { version = "*",       index = "https://download.pytorch.org/whl/cu128" }
+torchaudio    = { version = "*",       index = "https://download.pytorch.org/whl/cu128" }
+transformers  = ">=4.57.0"
+qwen-vl-utils = ">=0.0.14"
+accelerate    = "*"
+openai        = "*"
+pillow        = "*"
+pydantic      = ">=2.0"
+pandas        = "*"
+seaborn       = "*"
+
+[feature.ml.system-requirements]
+cuda  = "12.8"
+libc  = "2.31"
+
+[feature.ml.tasks]
+test_torch        = "python3 -c \"import torch; print(torch.__version__, torch.cuda.is_available())\""
+test_transformers = "python3 -c \"from transformers import AutoProcessor; print('transformers OK')\""
+test_openai       = "python3 -c \"from openai import OpenAI; print('openai OK')\""
+
+# ─────────────────────────────────────────────
+# GLOBAL TASKS
+# ─────────────────────────────────────────────
+[tasks]
+carla_window = "bash scripts/launch_carla.sh -ResX=800 -ResY=600 -quality-level=Epic"
+carla = "bash scripts/launch_carla.sh -RenderOffScreen -quality-level=Low"
+watch_graphics = "watch -n 2 'nvidia-smi --query-gpu=memory.total,memory.used,memory.free --format=csv && ollama ps'"
+
+[dependencies]
+opencv = ">=4.11.0,<6"
+numpy = ">=1.26.4,<3"

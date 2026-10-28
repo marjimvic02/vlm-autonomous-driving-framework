@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 99
+extend-ignore = E203,W503
+exclude = .git,.pixi,.local,archive,ros_ws/build,ros_ws/install,ros_ws/log,ros_ws/src/carla-ros-bridge,ros_ws/src/ros-carla-msgs,ros_ws/src/low_control_module/output

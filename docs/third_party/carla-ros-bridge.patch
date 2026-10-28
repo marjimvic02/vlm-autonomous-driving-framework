@@ -1,0 +1,55 @@
+diff --git a/carla_ros_bridge/src/carla_ros_bridge/CARLA_VERSION b/carla_ros_bridge/src/carla_ros_bridge/CARLA_VERSION
+index 5d11b14..f806549 100644
+--- a/carla_ros_bridge/src/carla_ros_bridge/CARLA_VERSION
++++ b/carla_ros_bridge/src/carla_ros_bridge/CARLA_VERSION
+@@ -1 +1 @@
+-0.9.15
++0.9.16
+diff --git a/carla_ros_bridge/src/carla_ros_bridge/traffic_participant.py b/carla_ros_bridge/src/carla_ros_bridge/traffic_participant.py
+index 4393510..7334777 100644
+--- a/carla_ros_bridge/src/carla_ros_bridge/traffic_participant.py
++++ b/carla_ros_bridge/src/carla_ros_bridge/traffic_participant.py
+@@ -11,6 +11,7 @@ Classes to handle Carla traffic participants
+ """
+ 
+ import carla_common.transforms as trans
++from geometry_msgs.msg import PoseWithCovariance, TwistWithCovariance, AccelWithCovariance
+ 
+ from carla_ros_bridge.actor import Actor
+ 
+@@ -74,11 +75,11 @@ class TrafficParticipant(Actor):
+         # ID
+         obj.id = self.get_id()
+         # Pose
+-        obj.pose = self.get_current_ros_pose()
++        obj.pose = PoseWithCovariance(pose=self.get_current_ros_pose())
+         # Twist
+-        obj.twist = self.get_current_ros_twist()
++        obj.twist = TwistWithCovariance(twist=self.get_current_ros_twist())
+         # Acceleration
+-        obj.accel = self.get_current_ros_accel()
++        obj.accel = AccelWithCovariance(accel=self.get_current_ros_accel())
+         # Shape
+         obj.shape.type = SolidPrimitive.BOX
+         obj.shape.dimensions.extend([
+@@ -90,7 +91,7 @@ class TrafficParticipant(Actor):
+         if self.get_classification() != Object.CLASSIFICATION_UNKNOWN:
+             obj.object_classified = True
+             obj.classification = self.get_classification()
+-            obj.classification_certainty = 255
++            obj.classification_certainty = 255.0
+             obj.classification_age = self.classification_age
+ 
+         return obj
+diff --git a/carla_spawn_objects/config/objects.json b/carla_spawn_objects/config/objects.json
+index f060b3c..42fc1d1 100644
+--- a/carla_spawn_objects/config/objects.json
++++ b/carla_spawn_objects/config/objects.json
+@@ -24,6 +24,7 @@
+         {
+             "type": "vehicle.dodge.charger_police_2020",
+             "id": "hero",
++            "spawn_point": {"x": 65.753, "y": -134.373, "z": 0.3, "roll": 0.0, "pitch": 0.0, "yaw": 179.096},    
+             "sensors": 
+             [
+                 {

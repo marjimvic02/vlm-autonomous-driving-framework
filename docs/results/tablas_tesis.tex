@@ -1,0 +1,98 @@
+% Block C comparison tables. Requires \usepackage{booktabs} and \usepackage{graphicx}.
+\begin{table}[ht]
+\centering
+\caption{Aggregate metric comparison over the five scenarios.}
+\label{tab:aggregate}
+\begin{tabular}{lcc}
+\toprule
+Metric & qwen3.5:2b & Claude Haiku 4.5 \\
+\midrule
+Total calls & 236 & 278 \\
+Valid \& complete & 91.5\% & 100.0\% \\
+Fallback rate & 8.5\% (20) & 0.0\% (0) \\
+\quad parse / missing / invalid & 3 / 6 / 11 & 0 / 0 / 0 \\
+Hallucinated actions (instances) & 11 & 0 \\
+Backward confusion & 11.0\% & 0.0\% \\
+target\_speed issues & 13 & 1 \\
+Low certainty & 6.4\% & 0.0\% \\
+Latency med / mean (s) & 5.0 / 5.5 & 4.0 / 4.5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Decision quality per scenario and model (qwen3.5:2b vs Claude Haiku 4.5).}
+\label{tab:results-scenario}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrrr}
+\toprule
+Scenario & Model & Calls & Valid \% & Fallback \% & Halluc. & Backward \% & TS issues & Lat. med. (s) \\
+\midrule
+Free & 2B & 67 & 94.0 & 6.0 & 2 & 1.5 & 2 & 6.0 \\
+ & Haiku & 80 & 100.0 & 0.0 & 0 & 0.0 & 0 & 4.0 \\
+\addlinespace
+Traffic & 2B & 61 & 93.4 & 6.6 & 3 & 9.8 & 5 & 6.0 \\
+ & Haiku & 71 & 100.0 & 0.0 & 0 & 0.0 & 0 & 5.0 \\
+\addlinespace
+Obstacle & 2B & 64 & 89.1 & 10.9 & 2 & 7.8 & 2 & 5.0 \\
+ & Haiku & 76 & 100.0 & 0.0 & 0 & 0.0 & 0 & 4.0 \\
+\addlinespace
+Pedestrian & 2B & 17 & 88.2 & 11.8 & 1 & 35.3 & 1 & 5.5 \\
+ & Haiku & 15 & 100.0 & 0.0 & 0 & 0.0 & 0 & 4.0 \\
+\addlinespace
+Ambulance & 2B & 27 & 88.9 & 11.1 & 3 & 29.6 & 3 & 5.0 \\
+ & Haiku & 36 & 100.0 & 0.0 & 0 & 0.0 & 1 & 5.0 \\
+\addlinespace
+Aggregate & 2B & 236 & 91.5 & 8.5 & 11 & 11.0 & 13 & 5.0 \\
+ & Haiku & 278 & 100.0 & 0.0 & 0 & 0.0 & 1 & 4.0 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Action distribution (valid calls, aggregated over the five scenarios).}
+\label{tab:actions}
+\begin{tabular}{lrr}
+\toprule
+Action & 2B & Haiku \\
+\midrule
+FOLLOW\_LANE & 92 & 202 \\
+SLOW\_DOWN & 16 & 57 \\
+STOP & 63 & 16 \\
+SPEED\_UP & 8 & 1 \\
+TURN\_LEFT & 13 & 1 \\
+TURN\_RIGHT & 6 & 1 \\
+CHANGE\_LANE\_LEFT & 8 & 0 \\
+CHANGE\_LANE\_RIGHT & 10 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\centering
+\caption{Control-layer events per scenario (from the dispatcher logs).}
+\label{tab:control-events}
+\begin{tabular}{llrrrr}
+\toprule
+Scenario & Model & stale & STOP override & commitment & fallback \\
+\midrule
+Free & 2B & 1 & 1 & 4 & 4 \\
+ & Haiku & 1 & 0 & 0 & 0 \\
+\addlinespace
+Traffic & 2B & 0 & 4 & 1 & 4 \\
+ & Haiku & 1 & 3 & 1 & 0 \\
+\addlinespace
+Obstacle & 2B & 0 & 1 & 3 & 7 \\
+ & Haiku & 5 & 0 & 0 & 0 \\
+\addlinespace
+Pedestrian & 2B & 0 & 0 & 1 & 2 \\
+ & Haiku & 0 & 0 & 0 & 0 \\
+\addlinespace
+Ambulance & 2B & 0 & 0 & 0 & 3 \\
+ & Haiku & 1 & 2 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,4 @@
+[tool.black]
+line-length = 99
+target-version = ["py311"]
+force-exclude = "/(archive|ros_ws/(build|install|log)|ros_ws/src/(carla-ros-bridge|ros-carla-msgs|low_control_module/output))/"

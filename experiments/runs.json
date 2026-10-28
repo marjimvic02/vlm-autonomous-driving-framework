@@ -1,0 +1,16 @@
+{
+  "description": "Historical five-scenario campaign; obstacle aggregates use run 2.",
+  "data_root": "ros_ws/src/low_control_module/output",
+  "runs": [
+    {"scenario": "free", "model": "qwen3.5:2b", "response": "qwen_2B_freerun/qwen_2B_freerun.md", "log": "qwen_2B_freerun/2B_freerun.log"},
+    {"scenario": "free", "model": "claude-haiku-4.5", "response": "haiku_freerun/haiku_freerun.md", "log": "haiku_freerun/haiku_freerun.log"},
+    {"scenario": "traffic", "model": "qwen3.5:2b", "response": "qwen_2B_traffic/qwen_2B_traffic.md", "log": "qwen_2B_traffic/qwen_2B_traffic.log"},
+    {"scenario": "traffic", "model": "claude-haiku-4.5", "response": "haiku_traffic/haiku_traffic.md", "log": "haiku_traffic/haiku_traffic.log"},
+    {"scenario": "obstacle", "model": "qwen3.5:2b", "response": "qwen_2B_obs/qwen_2B_obs_2.md", "log": "qwen_2B_obs/qwen_2B_obs_2.log"},
+    {"scenario": "obstacle", "model": "claude-haiku-4.5", "response": "haiku_obs/haiku_obs_2.md", "log": "haiku_obs/haiku_obs_2.log"},
+    {"scenario": "pedestrian", "model": "qwen3.5:2b", "response": "qwen_2B_pedestrian/qwen_2B_pedestrian.md", "log": "qwen_2B_pedestrian/qwen_2B_pedestrian.log"},
+    {"scenario": "pedestrian", "model": "claude-haiku-4.5", "response": "haiku_pedestrian/haiku_pedestrian.md", "log": "haiku_pedestrian/haiku_pedestrian.log"},
+    {"scenario": "ambulance", "model": "qwen3.5:2b", "response": "qwen_2B_ambulance/qwen_2B_ambulance.md", "log": "qwen_2B_ambulance/qwen_2B_ambulance.log"},
+    {"scenario": "ambulance", "model": "claude-haiku-4.5", "response": "haiku_ambulance/haiku_ambulance.md", "log": "haiku_ambulance/haiku_ambulance.log"}
+  ]
+}
